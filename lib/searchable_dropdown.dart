@@ -65,6 +65,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final dynamic label;
   final dynamic closeButton;
   final bool displayClearIcon;
+  final bool isAutoFocus;    
   final Icon clearIcon;
   final Color iconEnabledColor;
   final Color iconDisabledColor;
@@ -131,6 +132,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     dynamic label,
     dynamic closeButton = "Close",
     bool displayClearIcon = true,
+    bool isAutoFocus,      
     Icon clearIcon = const Icon(Icons.clear),
     Color iconEnabledColor,
     Color iconDisabledColor,
@@ -169,6 +171,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       displayClearIcon: displayClearIcon,
       clearIcon: clearIcon,
       onClear: onClear,
+      isAutoFocus: isAutoFocus,        
       selectedValueWidgetFn: selectedValueWidgetFn,
       keyboardType: keyboardType,
       validator: validator,
@@ -263,6 +266,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       isCaseSensitiveSearch: isCaseSensitiveSearch,
       closeButton: closeButton,
       displayClearIcon: displayClearIcon,
+      isAutoFocus: isAutoFocus,
       clearIcon: clearIcon,
       onClear: onClear,
       selectedValueWidgetFn: selectedValueWidgetFn,
@@ -300,6 +304,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.isCaseSensitiveSearch = false,
     this.closeButton,
     this.displayClearIcon = true,
+    this.isAutoFocus,
     this.clearIcon = const Icon(Icons.clear),
     this.onClear,
     this.selectedValueWidgetFn,
@@ -340,6 +345,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.isCaseSensitiveSearch = false,
     this.closeButton = "Close",
     this.displayClearIcon = false,
+    this.isAutoFocus,
     this.clearIcon = const Icon(Icons.clear),
     this.onClear,
     this.selectedValueWidgetFn,
@@ -485,6 +491,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       displayMenu: displayMenu,
       menuConstraints: widget.menuConstraints,
       menuBackgroundColor: widget.menuBackgroundColor,
+      isAutoFocus: widget.isAutoFocus,
       callOnPop: () {
         if (!widget.dialogBox &&
             widget.onChanged != null &&
@@ -688,6 +695,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final TextInputType keyboardType;
   final Function searchFn;
   final bool multipleSelection;
+  final bool isAutoFocus;
   final List<int> selectedItems;
   final Function displayItem;
   final dynamic doneButton;
@@ -710,6 +718,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.selectedItems,
     this.displayItem,
     this.doneButton,
+    this.isAutoFocus,      
     this.validator,
     this.dialogBox,
     this.displayMenu,
@@ -873,7 +882,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
             decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 32, vertical: 12)),
-            autofocus: true,
+            autofocus: widget.isAutoFocus ?? false,
             onChanged: (value) {
               _updateShownIndexes(value);
               setState(() {});
