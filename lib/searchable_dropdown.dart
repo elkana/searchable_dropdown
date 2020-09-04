@@ -11,6 +11,7 @@ class NotGiven {
 
 class PointerThisPlease<T> {
   T value;
+
   PointerThisPlease(this.value);
 }
 
@@ -65,7 +66,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final dynamic label;
   final dynamic closeButton;
   final bool displayClearIcon;
-  final bool isAutoFocus;    
+  final bool isAutoFocus;
   final Icon clearIcon;
   final Color iconEnabledColor;
   final Color iconDisabledColor;
@@ -132,7 +133,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     dynamic label,
     dynamic closeButton = "Close",
     bool displayClearIcon = true,
-    bool isAutoFocus,      
+    bool isAutoFocus,
     Icon clearIcon = const Icon(Icons.clear),
     Color iconEnabledColor,
     Color iconDisabledColor,
@@ -169,9 +170,9 @@ class SearchableDropdown<T> extends StatefulWidget {
       isCaseSensitiveSearch: isCaseSensitiveSearch,
       closeButton: closeButton,
       displayClearIcon: displayClearIcon,
+      isAutoFocus: isAutoFocus,
       clearIcon: clearIcon,
       onClear: onClear,
-      isAutoFocus: isAutoFocus,        
       selectedValueWidgetFn: selectedValueWidgetFn,
       keyboardType: keyboardType,
       validator: validator,
@@ -233,7 +234,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     dynamic label,
     dynamic closeButton = "Close",
     bool displayClearIcon = true,
-    bool isAutoFocus,      
+    bool isAutoFocus,
     Icon clearIcon = const Icon(Icons.clear),
     Color iconEnabledColor,
     Color iconDisabledColor,
@@ -385,6 +386,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
               .textTheme
               .subhead
               .copyWith(color: _disabledIconColor));
+
   bool get _enabled =>
       widget.items != null &&
       widget.items.isNotEmpty &&
@@ -544,8 +546,8 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
         : _kUnalignedButtonPadding;
 
     Widget clickable = InkWell(
-        key: Key(
-            "clickableResultPlaceHolder"), //this key is used for running automated tests
+        key: Key("clickableResultPlaceHolder"),
+        //this key is used for running automated tests
         onTap: (widget.readOnly ?? false) || !_enabled
             ? null
             : () async {
@@ -719,7 +721,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.selectedItems,
     this.displayItem,
     this.doneButton,
-    this.isAutoFocus,      
+    this.isAutoFocus,
     this.validator,
     this.dialogBox,
     this.displayMenu,
