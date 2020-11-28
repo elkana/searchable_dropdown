@@ -471,13 +471,15 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     }
     if (widget.multipleSelection) {
       selectedItems = List<int>.from(widget.selectedItems ?? []);
-    } else if (widget.value != null) {
-      int i = indexFromValue(widget.value);
-      if (i != null && i != -1) {
-        selectedItems = [i];
-      }
-    }
-    if (selectedItems == null) selectedItems = [];
+    } 
+      // bikin bug ?
+//       else if (widget.value != null) {
+//       int i = indexFromValue(widget.value);
+//       if (i != null && i != -1) {
+//         selectedItems = [i];
+//       }
+//     }
+//     if (selectedItems == null) selectedItems = [];
   }
 
   @override
