@@ -452,6 +452,15 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   @override
   void initState() {
+      // fix bug onchange
+   if (selectedItems == null) selectedItems = [];
+   if (widget.value != null) {
+      int i = indexFromValue(widget.value);
+      if (i != null && i != -1) {
+        selectedItems = [i];
+      }
+    }
+      
     _updateSelectedIndex();
     super.initState();
   }
